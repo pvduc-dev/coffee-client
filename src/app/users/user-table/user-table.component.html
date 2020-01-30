@@ -1,0 +1,18 @@
+<nz-table #userTable [nzData]="users">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Roles</th>
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userTable.data">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.roles }}</td>
+      <td>{{ user.active }}</td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,25 @@
+<nz-row>
+  <nz-col nzSpan="12" nzOffset="6">
+    <nz-card nzTitle="Login" nzHoverable="true">
+      <form nz-form nzLayout="vertical" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <nz-form-item>
+          <nz-form-control nzHasFeedback="true">
+            <nz-input-group nzPrefixIcon="anticon anticon-user">
+              <input type="text" nz-input formControlName="email" placeholder="Email">
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback="true">
+            <nz-input-group nzPrefixIcon="anticon anticon-key">
+              <input type="password" nz-input formControlName="password" placeholder="Password">
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="d-flex align-items-center">
+          <button nz-button nzType="primary" [nzLoading]="isLoading">Login</button>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </nz-col>
+</nz-row>

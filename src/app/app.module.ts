@@ -3,31 +3,38 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
-import { NgZorroAntdModule, NZ_I18N, vi_VN } from 'ng-zorro-antd';
+import { NZ_I18N, NzLayoutModule, vi_VN } from 'ng-zorro-antd';
 import vi from '@angular/common/locales/vi';
-import { LoginComponent } from './login/login.component';
+import { AuthModule } from './auth/auth.module';
+import {UsersModule} from './users/users.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './core/auth.interceptor';
 
 registerLocaleData(vi);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    NgZorroAntdModule,
-    ReactiveFormsModule,
+    AuthModule,
+    UsersModule,
+    NzLayoutModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: vi_VN }],
+  providers: [
+    {
+      provide: NZ_I18N,
+      useValue: vi_VN
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
