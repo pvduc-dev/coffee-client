@@ -15,8 +15,4 @@ export class AuthService {
   public login(loginDto: LoginDto): Observable<JwtPayload> {
     return this.http.post<JwtPayload>(this.loginUrl, loginDto);
   }
-
-  public async storingToken(token: string): Promise<void> {
-    localStorage.setItem('access_token', token);
-  }
 }

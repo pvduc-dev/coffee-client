@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  public async onSubmit() {
+  public onSubmit() {
     this.isLoading = true;
     this.authService.login(this.loginForm.value)
       .subscribe({
-        next: async value => {
-          await this.authService.storingToken(value.access_token);
-          await this.router.navigate(['users']);
+        next: value => {
+          localStorage.setItem('access_token', value.access_token);
+          this.router.navigateByUrl('users');
         },
         error: err => console.log(err)
       });
